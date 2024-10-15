@@ -9,13 +9,14 @@
 <body>
     <div class="container">
         <h1>Random Team Distributor</h1>
+        <p>This application allows you to randomly distribute members into teams. You can upload a CSV file or enter member names manually. Once you specify the number of teams, the application will handle the rest!</p>
 
-        <div>
+        <div class="input-group">
             <label for="csvInput">Upload CSV File:</label>
             <input type="file" id="csvInput" accept=".csv">
         </div>
 
-        <div>
+        <div class="input-group">
             <label for="numMembers">Number of Members:</label>
             <input type="number" id="numMembers" min="1">
             <button id="generateInputs">Generate Member Inputs</button>
@@ -23,7 +24,7 @@
 
         <div id="memberInputs"></div>
 
-        <div>
+        <div class="input-group">
             <label for="numTeams">Number of Teams:</label>
             <input type="number" id="numTeams" min="1" required>
         </div>
@@ -32,13 +33,19 @@
         <button id="downloadBtn" style="display:none;">Download CSV</button>
 
         <div id="result" class="result"></div>
+
+        <button onclick="window.location.href='help.html';" class="usage-button">How to Use This Website</button>
+        <footer>
+            <p>&copy; 2024 Random Team Distributor. Developed by JIT student Mohammad Ahmad. All rights reserved.</p>
+        </footer>   
     </div>
+
+   
 
     <script>
         let teams = [];
         let members = [];
 
-        // Handle CSV file upload
         document.getElementById('csvInput').addEventListener('change', (event) => {
             const file = event.target.files[0];
             if (file) {
@@ -59,7 +66,6 @@
             return lines.map(line => line.trim()).filter(line => line);
         }
 
-        // Generate input fields for manual member input
         document.getElementById('generateInputs').addEventListener('click', () => {
             const numMembers = parseInt(document.getElementById('numMembers').value);
             const memberInputsDiv = document.getElementById('memberInputs');
@@ -67,14 +73,15 @@
 
             for (let i = 0; i < numMembers; i++) {
                 memberInputsDiv.innerHTML += `
-                    <label for="member${i}">Member ${i + 1} Name:</label>
-                    <input type="text" id="member${i}" required>
+                    <div class="input-group">
+                        <label for="member${i}">Member ${i + 1} Name:</label>
+                        <input type="text" id="member${i}" required>
+                    </div>
                 `;
             }
             document.getElementById('distributeBtn').style.display = 'block';
         });
 
-        // Distribute members into teams
         document.getElementById('distributeBtn').addEventListener('click', () => {
             const numTeams = parseInt(document.getElementById('numTeams').value);
             if (members.length === 0) {
@@ -101,7 +108,6 @@
             document.getElementById('downloadBtn').style.display = 'block';
         });
 
-        // Download the results as a CSV file
         document.getElementById('downloadBtn').addEventListener('click', () => {
             const csvContent = "data:text/csv;charset=utf-8," 
                 + teams.map((team, index) => `Team ${index + 1}, ${team.join(', ')}`).join('\n');
@@ -114,12 +120,144 @@
             document.body.removeChild(link);
         });
 
-        // Clear member input fields
         function clearMemberInputs() {
             const memberInputsDiv = document.getElementById('memberInputs');
             memberInputsDiv.innerHTML = '';
             document.getElementById('numMembers').value = '';
         }
     </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 90%;
+            margin: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            background-color: rgba(30, 30, 30, 0.9);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin: 5px 0;
+            font-weight: bold;
+            text-shadow: 0 0 3px #0ff, 0 0 6px #0ff;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #0ff;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #222;
+            color: #fff;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border: 1px solid #00f;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background 0.3s;
+            text-shadow: 0 0 3px #0ff, 0 0 6px #0ff;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 10px #0ff;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            border: 1px solid #0ff;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #100013;
+            color: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            input[type="file"] {
+                font-size: 14px;
+            }
+        }
+    </style>
 </body>
 </html>
