@@ -5,11 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Help - Random Team Distributor</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function showUseCases() {
+            const useCaseDiv = document.getElementById('useCases');
+            useCaseDiv.style.display = 'block';
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Help - Random Team Distributor</h1>
         <p>Welcome to the Random Team Distributor! This application helps you randomly assign members into teams. Below is a guide on how to use the application effectively.</p>
+
+        <!-- Use Case Button -->
+        <button onclick="showUseCases()" class="use-case-button" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; margin-bottom: 20px;">Show Potential Use Cases</button>
+
+        <!-- Use Cases Div (Initially Hidden) -->
+        <div id="useCases" style="display: none; padding: 10px; background-color: #f9f9f9; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 20px;">
+            <h2>Potential Use Cases:</h2>
+            <ul>
+                <li><strong>School or Classroom Projects:</strong> Teachers can randomly assign students to project groups.</li>
+                <li><strong>Sports:</strong> Coaches or organizers can quickly form teams for games or events.</li>
+                <li><strong>Workplace Team Building:</strong> HR professionals can use it for creating random teams for activities.</li>
+                <li><strong>Gaming or Hackathons:</strong> Organizers can assign participants into teams for competitions or events.</li>
+            </ul>
+        </div>
 
         <h2>Features</h2>
         <ul>
