@@ -11,6 +11,17 @@
             useCaseDiv.style.display = 'block';
         }
     </script>
+    <style>
+        #useCases {
+            display: none;
+            padding: 10px;
+            background-color: #f0f0f0; 
+            color: #333; 
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -21,7 +32,7 @@
         <button onclick="showUseCases()" class="use-case-button" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; margin-bottom: 20px;">Show Potential Use Cases</button>
 
         <!-- Use Cases Div (Initially Hidden) -->
-        <div id="useCases" style="display: none; padding: 10px; background-color: #f9f9f9; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 20px;">
+        <div id="useCases">
             <h2>Potential Use Cases:</h2>
             <ul>
                 <li><strong>School or Classroom Projects:</strong> Teachers can randomly assign students to project groups.</li>
